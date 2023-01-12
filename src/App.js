@@ -1,12 +1,26 @@
 import React from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import ListItem from './components/ListItem';
+import { GlobalProvider } from './context/GlobalContext';
+import EditItem from './pages/items/EditItem';
+import CreateItem from './pages/items/CreateItem';
 
-function App() {
+
+function App(props) {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>HI LOUAI ALOUI</h1>
-      </header>
+      <GlobalProvider>
+        <header className="App-header">
+          <ListItem />
+          <div className="vl"></div>
+          {(props.match.params.id) ? (
+            <EditItem props={props} />
+          ) : (
+            <CreateItem />
+          )}
+        </header>
+      </GlobalProvider>
     </div>
   );
 }

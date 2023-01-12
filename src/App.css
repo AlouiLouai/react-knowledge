@@ -6,7 +6,7 @@
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -24,4 +24,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.vl {
+  height: 500px;
+  top: 0;
+  display: inline-block;
+  width: 2px;
+  background-color: white;
+  margin: 0 10px;
+  height: 10em;
 }
