@@ -24,7 +24,7 @@ function AddItem() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>Add Or Update item</label>
+            <label>Add ITem</label>
             <br />
             <input
                 value={Name}
@@ -51,7 +51,7 @@ function AddItem() {
                 onChange={(e) => setPhone(e.target.value)}
             />
             <br />
-            <button type="submit">AddOrEdit</button>
+            <button type="submit">Add</button>
         </form>
     )
 }

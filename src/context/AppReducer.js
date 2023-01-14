@@ -14,16 +14,22 @@ export default (state, action) => {
             }
         case 'UPDATE_ITEM':
             const updatedItem = action.payload
-            const items = state.items.map(x => {
-                if(x.id === updatedItem.id){
+            const newItems = state.items.map(item => {
+                if (item.id === updatedItem.id) {
                     return updatedItem
                 }
-                return x
+                return item
             })
             return {
                 ...state,
-                items: items
+                items: newItems
             }
+        case 'SET_ITEM_ID':
+            return {
+                ...state,
+                itemId: action.payload
+            }
+
         default:
             return state
     }

@@ -2,10 +2,10 @@ import React, { useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 
 function ListItem() {
-    const { items, removeItem, editItem } = useContext(GlobalContext)
+    const { items, removeItem, setItemId, itemId } = useContext(GlobalContext)
     useEffect(() => {
         items
-    }, [])
+    }, [itemId])
     return (
         <div>
             <table>
@@ -15,6 +15,7 @@ function ListItem() {
                         <th>Name</th>
                         <th>Marks</th>
                         <th>Phone</th>
+                        <th colSpan={2}>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,7 +27,7 @@ function ListItem() {
                                 <td>{element.Marks}</td>
                                 <td>{element.Phone}</td>
                                 <td>
-                                    <button onClick={() => editItem(element.id)} color="danger">Edit</button>
+                                    <button onClick={() => setItemId(element.id) } color="danger">Edit</button>
                                 </td>
                                 <td>
                                     <button onClick={() => removeItem(element.id)} color="danger">Delete</button>

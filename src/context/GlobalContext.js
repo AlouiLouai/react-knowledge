@@ -3,7 +3,8 @@ import AppReducer from './AppReducer'
 import item from "../mocks/items"
 
 const initialState = {
-    items: item
+    items: item,
+    itemId: 0
 }
 
 // Create Context
@@ -33,13 +34,21 @@ export const GlobalProvider = ({ children }) => {
         })
     }
 
+    const setItemId = (id) => {
+        dispatch({
+            type: 'SET_ITEM_ID',
+            payload: id
+        })
+    }
+
     return (
         <GlobalContext.Provider value={{
             items: state.items,
+            itemId: state.itemId,
             removeItem,
             addItem,
             editItem,
-            getItemById
+            setItemId
         }}>
             {children}
         </GlobalContext.Provider>

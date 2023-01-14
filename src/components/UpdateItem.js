@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 
 
-export const UpdateItem = (props) => {
+export const UpdateItem = () => {
 
-    const { editItem, items } = useContext(GlobalContext)
+    const { editItem, items, itemId } = useContext(GlobalContext)
     const [selected, setSelected] = useState({
         id: '',
         Name: '',
@@ -12,45 +12,47 @@ export const UpdateItem = (props) => {
         Phone: ''
     })
 
-    const currentItemId = props.match.params.id;
-
     const onChange = (e) => {
-        setSelected({...selected, [e.target.name]: e.target.value})
+        setSelected({ ...selected, [e.target.name]: e.target.value })
     }
 
     useEffect(() => {
-        const itemId = currentItemId;
         const selectedItem = items.find(item => item.id === itemId);
         setSelected(selectedItem);
-    }, [currentItemId, items])
+    }, [itemId, items])
 
     const handleSubmit = (e) => {
         const updatedItem = {
-            id: currentItemId,
-            Name,
-            Marks,
-            Phone
+            id: itemId,
+            Name: selected.Name,
+            Marks: selected.Marks,
+            Phone: selected.Phone
         }
         editItem(updatedItem);
+        setSelected({
+            Name: '',
+            Marks: '',
+            Phone: ''
+        })
         e.preventDefault();
     }
 
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>Update item</label>
+            <label>Name</label>
             <br />
             <input
-                value={Name}
+                value={selected?.Name || ''}
                 name='Name'
                 type='text'
                 onChange={onChange}
             />
             <br />
-            <label>Name</label>
+            <label>Marks</label>
             <br />
             <input
-                value={Marks}
+                value={selected?.Marks || ''}
                 name='Marks'
                 type='number'
                 onChange={onChange}
@@ -59,7 +61,7 @@ export const UpdateItem = (props) => {
             <label>Phone</label>
             <br />
             <input
-                value={Phone}
+                value={selected?.Phone || ''}
                 name='Phone'
                 type='number'
                 onChange={onChange}
