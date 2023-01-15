@@ -24,7 +24,7 @@ function AddItem() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>Add ITem</label>
+            <label>Name</label>
             <br />
             <input
                 value={Name}
@@ -33,7 +33,7 @@ function AddItem() {
                 onChange={(e) => setName(e.target.value)}
             />
             <br />
-            <label>Name</label>
+            <label>Marks</label>
             <br />
             <input
                 value={Marks}

@@ -22,7 +22,8 @@ export default (state, action) => {
             })
             return {
                 ...state,
-                items: newItems
+                items: newItems,
+                itemId: 0
             }
         case 'SET_ITEM_ID':
             return {

@@ -22,6 +22,7 @@ export const UpdateItem = () => {
     }, [itemId, items])
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         const updatedItem = {
             id: itemId,
             Name: selected.Name,
@@ -29,12 +30,7 @@ export const UpdateItem = () => {
             Phone: selected.Phone
         }
         editItem(updatedItem);
-        setSelected({
-            Name: '',
-            Marks: '',
-            Phone: ''
-        })
-        e.preventDefault();
+        setSelected({...selected})
     }
 
 
