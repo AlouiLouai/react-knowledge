@@ -4,20 +4,27 @@ import { GlobalContext } from "../context/GlobalContext";
 
 function AddItem() {
     const { addItem } = useContext(GlobalContext)
-    const [Name, setName] = useState('')
-    const [Marks, setMarks] = useState('')
-    const [Phone, setPhone] = useState('')
+    const [item, setItem] = useState({
+        Name: '',
+        Marks: '',
+        Phone: ''
+    })
+    const handleChange = (e) => {
+        setItem({...item, [e.target.name] : e.target.value})
+    }
     const handleSubmit = (e) => {
         const newItem = {
             id: Math.trunc(Math.random()*20),
-            Name,
-            Marks,
-            Phone
+            Name: item.Name,
+            Marks: item.Marks,
+            Phone: item.Phone
         }
         addItem(newItem);
-        setName('');
-        setMarks('');
-        setPhone('')
+        setItem({
+            Name: '',
+            Marks: '',
+            Phone: ''
+        })
         e.preventDefault();
     }
 
@@ -27,28 +34,28 @@ function AddItem() {
             <label>Name</label>
             <br />
             <input
-                value={Name}
+                value={item.Name}
                 name='Name'
                 type='text'
-                onChange={(e) => setName(e.target.value)}
+                onChange={handleChange}
             />
             <br />
             <label>Marks</label>
             <br />
             <input
-                value={Marks}
+                value={item.Marks}
                 name='Marks'
                 type='number'
-                onChange={(e) => setMarks(e.target.value)}
+                onChange={handleChange}
             />
             <br />
             <label>Phone</label>
             <br />
             <input
-                value={Phone}
+                value={item.Phone}
                 name='Phone'
                 type='number'
-                onChange={(e) => setPhone(e.target.value)}
+                onChange={handleChange}
             />
             <br />
             <button type="submit">Add</button>

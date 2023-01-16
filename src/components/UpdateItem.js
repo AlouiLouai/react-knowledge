@@ -30,7 +30,6 @@ export const UpdateItem = () => {
             Phone: selected.Phone
         }
         editItem(updatedItem);
-        setSelected({...selected})
     }
 
 
